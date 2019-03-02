@@ -34,10 +34,10 @@ extern vu8 bDeviceState;		//USB连接 情况
 
 int main(void)
 {
-	u8 offline_cnt=0;
-	u8 tct=0;
-	u8 USB_STA;
-	u8 Divece_STA;
+//	u8 offline_cnt=0;
+//	u8 tct=0;
+//	u8 USB_STA;
+//	u8 Divece_STA;
 	
     Stm32_Clock_Init(384,25,2,8);   //设置时钟,192Mhz   
     delay_init(192);                //初始化延时函数
@@ -47,15 +47,11 @@ int main(void)
     SDRAM_Init();                   //SDRAM初始化
 //    LCD_Init();                     //LCD初始化
 //	W25QXX_Init();				    //初始化W25Q256
-//    PCF8574_Init();				    //初始化PCF8574 
+    PCF8574_Init();				    //初始化PCF8574 
  	my_mem_init(SRAMIN);		    //初始化内部内存池
 	my_mem_init(SRAMEX);		    //初始化外部内存池
 	my_mem_init(SRAMCCM);		    //初始化CCM内存池 
-//   	POINT_COLOR=RED;
-//	LCD_ShowString(30,50,200,16,16,"Apollo STM32F4/F7"); 
-//	LCD_ShowString(30,70,200,16,16,"USB Card Reader TEST");	
-//	LCD_ShowString(30,90,200,16,16,"ATOM@ALIENTEK");
-//	LCD_ShowString(30,110,200,16,16,"2016/2/20");	
+
 	if(SD_Init())
 	{
 		printf("检测SD卡错误\r\n");
@@ -84,6 +80,7 @@ int main(void)
 	delay_ms(1800);			    
 	while(1)
 	{
+#if 0
 		
 //		printf("Hello USB!\r\n");
         delay_ms(1);				  
@@ -131,21 +128,23 @@ int main(void)
 			Divece_STA=bDeviceState;
 		}
 		tct++;
-		if(tct==200)
-		{
-			tct=0;
-			LED1=1;
-			LED0=!LED0;//提示系统在运行
-			if(USB_STATUS_REG&0x10)
-			{
-				offline_cnt=0;//USB连接了,则清除offline计数器
-				bDeviceState=1;
-			}else//没有得到轮询 
-			{
-				offline_cnt++;  
-				if(offline_cnt>10)bDeviceState=0;//2s内没收到在线标记,代表USB被拔出了
-			}
-			USB_STATUS_REG=0;
-		} 
-	} 
+//		if(tct==200)
+//		{
+//			tct=0;
+//			LED1=1;
+//			LED0=!LED0;//提示系统在运行
+//			if(USB_STATUS_REG&0x10)
+//			{
+//				offline_cnt=0;//USB连接了,则清除offline计数器
+//				bDeviceState=1;
+//			}else//没有得到轮询 
+//			{
+//				offline_cnt++;  
+//				if(offline_cnt>10)bDeviceState=0;//2s内没收到在线标记,代表USB被拔出了
+//			}
+//			USB_STATUS_REG=0;
+//		}
+
+#endif		
+	}   //end if while(1)
 }

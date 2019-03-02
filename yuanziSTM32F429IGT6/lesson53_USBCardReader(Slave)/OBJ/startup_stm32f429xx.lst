@@ -922,12 +922,12 @@ ARM Macro Assembler    Page 15
               00000200 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend=..\obj\startup_stm32f429xx.d -o..\obj\startup_stm32f429xx.o -I"
-D:\1_MYDocument\4_github\USBCardReader\正点原子阿波罗STM32F429IGT6\实验53 USB读
-卡器(Slave)实验\USER\RTE" -ID:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Driver
-s\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine=
-"__UVISION_VERSION SETA 520" --predefine="STM32F429xx SETA 1" --list=..\obj\sta
-rtup_stm32f429xx.lst ..\CORE\startup_stm32f429xx.s
+erwork --depend=..\obj\startup_stm32f429xx.d -o..\obj\startup_stm32f429xx.o -ID
+:\1_MYDocument\4_github\USBCardReader\yuanziSTM32F429IGT6\lesson53_USBCardReade
+r(Slave)\USER\RTE -ID:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\
+Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__UVISI
+ON_VERSION SETA 520" --predefine="STM32F429xx SETA 1" --list=..\obj\startup_stm
+32f429xx.lst ..\CORE\startup_stm32f429xx.s
 
 
 

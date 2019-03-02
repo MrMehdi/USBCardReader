@@ -21,8 +21,8 @@
 ////////////////////////////////////////////////////////////////////////////////// 	   
  
 //最大支持的设备数,3个
-#define STORAGE_LUN_NBR 	3
-
+//#define STORAGE_LUN_NBR 	3
+#define STORAGE_LUN_NBR 	1
 ////////////////////////////自己定义的一个标记USB状态的寄存器///////////////////
 //bit0:表示电脑正在向SD卡写入数据
 //bit1:表示电脑正从SD卡读出数据
@@ -32,43 +32,44 @@
 vu8 USB_STATUS_REG=0;
 ////////////////////////////////////////////////////////////////////////////////
  
+ 
 
 //USB Mass storage 标准查询数据(每个lun占36字节)
 const int8_t  STORAGE_Inquirydata[] = { 
   
-	/* LUN 0 */ 
-	0x00,		
-	0x80,		
-	0x02,		
-	0x02,
-	(USBD_STD_INQUIRY_LENGTH - 4),
-	0x00,
-	0x00,	
-	0x00,
-    /* Vendor Identification */
-    'A', 'L', 'I', 'E', 'N', 'T', 'E', 'K', ' ',//9字节
-    /* Product Identification */
-    'S', 'P', 'I', ' ', 'F', 'l', 'a', 's', 'h',//15字节
-    ' ','D', 'i', 's', 'k', ' ',
-    /* Product Revision Level */	
-    '1', '.', '0', ' ',							//4字节		
-	
-	/* LUN 1 */
-	0x00,
-	0x80,		
-	0x02,		
-	0x02,
-	(USBD_STD_INQUIRY_LENGTH - 4),
-	0x00,
-	0x00,	
-	0x00,
-	/* Vendor Identification */
-	'A', 'L', 'I', 'E', 'N', 'T', 'E', 'K',' ',	//9字节
-	/* Product Identification */				
-    'N', 'A', 'N', 'D', ' ', 'F', 'l', 'a', 's', 'h',//15字节
-	' ','D', 'i', 's', 'k', 
-    /* Product Revision Level */
-	'1', '.', '0' ,' ',                      	//4字节
+//	/* LUN 0 */ 
+//	0x00,		
+//	0x80,		
+//	0x02,		
+//	0x02,
+//	(USBD_STD_INQUIRY_LENGTH - 4),
+//	0x00,
+//	0x00,	
+//	0x00,
+//    /* Vendor Identification */
+//    'A', 'L', 'I', 'E', 'N', 'T', 'E', 'K', ' ',//9字节
+//    /* Product Identification */
+//    'S', 'P', 'I', ' ', 'F', 'l', 'a', 's', 'h',//15字节
+//    ' ','D', 'i', 's', 'k', ' ',
+//    /* Product Revision Level */	
+//    '1', '.', '0', ' ',							//4字节		
+//	
+//	/* LUN 1 */
+//	0x00,
+//	0x80,		
+//	0x02,		
+//	0x02,
+//	(USBD_STD_INQUIRY_LENGTH - 4),
+//	0x00,
+//	0x00,	
+//	0x00,
+//	/* Vendor Identification */
+//	'A', 'L', 'I', 'E', 'N', 'T', 'E', 'K',' ',	//9字节
+//	/* Product Identification */				
+//    'N', 'A', 'N', 'D', ' ', 'F', 'l', 'a', 's', 'h',//15字节
+//	' ','D', 'i', 's', 'k', 
+//    /* Product Revision Level */
+//	'1', '.', '0' ,' ',                      	//4字节
 	
 	/* LUN 2 */
 	0x00,
@@ -121,12 +122,12 @@ int8_t STORAGE_Init (uint8_t lun)
 	switch(lun)
 	{
 		case 0://SPI FLASH
-			W25QXX_Init();
-			break;
-		case 1://NAND FLASH
-			res=FTL_Init();
-			break;
-		case 2://SD卡
+//			W25QXX_Init();
+//			break;
+//		case 1://NAND FLASH
+//			res=FTL_Init();
+//			break;
+//		case 2://SD卡
 			res=SD_Init();
 			break; 
 	} 
@@ -144,14 +145,15 @@ int8_t STORAGE_GetCapacity (uint8_t lun, uint32_t *block_num, uint32_t *block_si
 	switch(lun)
 	{
 		case 0://SPI FLASH
-			*block_size=512;  
-			*block_num=1024*1024*25/512;	//SPI FLASH的前面25M字节,文件系统用
-			break;
-		case 1://NAND FLASH
-			*block_size=512;  
-			*block_num=nand_dev.valid_blocknum*nand_dev.block_pagenum*nand_dev.page_mainsize/512;
-  			break;
-		case 2://SD卡
+//			*block_size=512;  
+//			*block_num=1024*1024*25/512;	//SPI FLASH的前面25M字节,文件系统用
+//		
+//			break;
+//		case 1://NAND FLASH
+//			*block_size=512;  
+//			*block_num=nand_dev.valid_blocknum*nand_dev.block_pagenum*nand_dev.page_mainsize/512;
+//  			break;
+//		case 2://SD卡
 			*block_size=512;  
 			*block_num=SDCardInfo.CardCapacity/512; 
 			break; 
@@ -192,12 +194,12 @@ int8_t STORAGE_Read (uint8_t lun,uint8_t *buf,uint32_t blk_addr,uint16_t blk_len
 	switch(lun)
 	{
 		case 0://SPI FLASH
-			W25QXX_Read(buf,blk_addr*512,blk_len*512);
-			break;
-		case 1://NAND FLASH
-			res=FTL_ReadSectors(buf,blk_addr,512,blk_len);
-			break;
-		case 2://SD卡
+//			W25QXX_Read(buf,blk_addr*512,blk_len*512);
+//			break;
+//		case 1://NAND FLASH
+//			res=FTL_ReadSectors(buf,blk_addr,512,blk_len);
+//			break;
+//		case 2://SD卡
 			res=SD_ReadDisk(buf,blk_addr,blk_len);
 			break; 
 	} 
@@ -221,16 +223,16 @@ int8_t STORAGE_Write (uint8_t lun,uint8_t *buf,uint32_t blk_addr,uint16_t blk_le
 	switch(lun)
 	{
 		case 0://SPI FLASH
-			W25QXX_Write(buf,blk_addr*512,blk_len*512);
-			break;
-		case 1://NAND FLASH
-			res=FTL_WriteSectors(buf,blk_addr,512,blk_len);
-			break;
-		case 2://SD卡
+//			W25QXX_Write(buf,blk_addr*512,blk_len*512);
+//			break;
+//		case 1://NAND FLASH
+//			res=FTL_WriteSectors(buf,blk_addr,512,blk_len);
+//			break;
+//		case 2://SD卡
 			res=SD_WriteDisk(buf,blk_addr,blk_len);
 			break; 
 	}  
-	if(res)
+	if(res)5 
 	{
 		USB_STATUS_REG|=0X04;//写错误!	 
 	}
