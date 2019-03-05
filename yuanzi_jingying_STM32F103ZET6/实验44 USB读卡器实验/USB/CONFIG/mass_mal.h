@@ -37,8 +37,8 @@
 /* Exported constants --------------------------------------------------------*/
 #define MAL_OK   0
 #define MAL_FAIL 1
-#define MAX_LUN  1		//2个可移动磁盘 SD卡+FLASH
-//#define MAX_LUN  0		
+//#define MAX_LUN  1		//2个可移动磁盘 SD卡+FLASH
+#define MAX_LUN  0		
 
 extern long long Mass_Memory_Size[MAX_LUN+1];
 extern u32 Mass_Block_Size[MAX_LUN+1];

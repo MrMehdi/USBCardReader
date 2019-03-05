@@ -565,12 +565,11 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -I"D
-:\1_MYDocument\1_MyWork\1_MyDocument\3_STM32\Ô­×Ó¾«Ó¢°å\¾«Ó¢°å ×ÊÁÏÅÌ(AÅÌ)\¾«Ó¢
-°å ×ÊÁÏÅÌ(AÅÌ)\4£¬³ÌÐòÔ´Âë\2£¬±ê×¼Àý³Ì-¿âº¯Êý°æ±¾\2£¬±ê×¼Àý³Ì-¿âº¯Êý°æ±¾\ÊµÑé44
- USB¶Á¿¨Æ÷ÊµÑé\USER\RTE" -ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\
-Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__UVISION_VERSION SETA 520"
- --predefine="STM32F10X_HD SETA 1" --list=.\startup_stm32f10x_hd.lst ..\CORE\st
-artup_stm32f10x_hd.s
+:\1_MYDocument\4_github\USBCardReader\yuanzi_jingying_STM32F103ZET6\ÊµÑé44 USB¶
+Á¿¨Æ÷ÊµÑé\USER\RTE" -ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Inclu
+de -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__UVISION_VERSION SETA 520" --pr
+edefine="STM32F10X_HD SETA 1" --list=.\startup_stm32f10x_hd.lst ..\CORE\startup
+_stm32f10x_hd.s
 
 
 

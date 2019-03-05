@@ -51,8 +51,8 @@
 //使用DMA模式的时候,传输速率可以到24Mhz,不过如果你的卡不是高速卡,可能也会出错
 //出错就请降低时钟,使用查询模式的话,推荐SDIO_TRANSFER_CLK_DIV设置为3或者更大
 #define SDIO_INIT_CLK_DIV        0xB2 		//SDIO初始化频率，最大400Kh  
-#define SDIO_TRANSFER_CLK_DIV    0x04		//SDIO传输频率,该值太小可能会导致读写文件出错 
-										 
+//#define SDIO_TRANSFER_CLK_DIV    0x04		//SDIO传输频率,该值太小可能会导致读写文件出错 
+#define SDIO_TRANSFER_CLK_DIV    0x0C		//SDIO传输频率,该值太小可能会导致读写文件出错 									 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////// 
 //SDIO工作模式定义,通过SD_SetDeviceMode函数设置.

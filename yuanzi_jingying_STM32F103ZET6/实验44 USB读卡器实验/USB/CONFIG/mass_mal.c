@@ -76,11 +76,18 @@ uint16_t MAL_Write(uint8_t lun, uint64_t Memory_Offset, uint32_t *Writebuff, uin
 	switch (lun)		//这里,根据lun的值确定所要操作的磁盘
 	{
 		case 0:		 	//磁盘0为 SPI FLASH盘	
-			STA=0;
-			W25QXX_Write((u8*)Writebuff, Memory_Offset, Transfer_Length);   		  
+//			STA=0;
+//			W25QXX_Write((u8*)Writebuff, Memory_Offset, Transfer_Length);  
+
+			STA=SD_WriteDisk((u8*)Writebuff, Memory_Offset>>9, Transfer_Length>>9);   		  
+		
 			break; 
 		case 1:			//磁盘1为SD卡		  
-			STA=SD_WriteDisk((u8*)Writebuff, Memory_Offset>>9, Transfer_Length>>9);   		  
+//			STA=SD_WriteDisk((u8*)Writebuff, Memory_Offset>>9, Transfer_Length>>9);   
+
+			STA=0;
+			W25QXX_Write((u8*)Writebuff, Memory_Offset, Transfer_Length);  
+		
 			break;							  
 		default:
 			return MAL_FAIL;
@@ -102,11 +109,19 @@ uint16_t MAL_Read(uint8_t lun, uint64_t Memory_Offset, uint32_t *Readbuff, uint1
 	switch (lun)		//这里,根据lun的值确定所要操作的磁盘
 	{
 		case 0:			//磁盘0为 SPI FLASH盘	 
+//			STA=0;
+//			W25QXX_Read((u8*)Readbuff, Memory_Offset, Transfer_Length);   	
+
+		STA=SD_ReadDisk((u8*)Readbuff, Memory_Offset>>9, Transfer_Length>>9);	
+	  
+			break;	  
+		case 1:			//磁盘1为SD卡		    	
+//			STA=SD_ReadDisk((u8*)Readbuff, Memory_Offset>>9, Transfer_Length>>9);	  
+
 			STA=0;
 			W25QXX_Read((u8*)Readbuff, Memory_Offset, Transfer_Length);   		  
-			break;	  
-		case 1:			//磁盘1为SD卡		    
-			STA=SD_ReadDisk((u8*)Readbuff, Memory_Offset>>9, Transfer_Length>>9);	   
+
+		
 			break;			    
 		default:
 			return MAL_FAIL;

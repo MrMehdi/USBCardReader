@@ -71,13 +71,13 @@ void SCSI_Inquiry_Cmd(uint8_t lun)
   {
     if ( lun == 0)
     {
-      Inquiry_Data = Standard_Inquiry_Data;
-//			Inquiry_Data = Standard_Inquiry_Data2;
+//      Inquiry_Data = Standard_Inquiry_Data;
+			Inquiry_Data = Standard_Inquiry_Data2;
     }
     else
     {
-      Inquiry_Data = Standard_Inquiry_Data2;
-//			Inquiry_Data = Standard_Inquiry_Data;
+//      Inquiry_Data = Standard_Inquiry_Data2;
+			Inquiry_Data = Standard_Inquiry_Data;
     }
     if (CBW.CB[4] <= STANDARD_INQUIRY_DATA_LEN)
       Inquiry_Data_Length = CBW.CB[4];
